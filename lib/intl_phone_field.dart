@@ -245,6 +245,7 @@ class IntlPhoneField extends StatefulWidget {
 
   /// Enable the autofill hint for phone number.
   final bool disableAutoFillHints;
+  final bool isValidation;
 
   /// If null, default magnification configuration will be used.
   final TextMagnifierConfiguration? magnifierConfiguration;
@@ -255,6 +256,7 @@ class IntlPhoneField extends StatefulWidget {
     this.initialCountryCode,
     this.languageCode = 'en',
     this.disableAutoFillHints = false,
+    this.isValidation = true,
     this.obscureText = false,
     this.textAlign = TextAlign.left,
     this.textAlignVertical,
@@ -401,7 +403,9 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       magnifierConfiguration: widget.magnifierConfiguration,
       decoration: widget.decoration.copyWith(
         prefixIcon: _buildFlagsButton(),
-        counterText: !widget.enabled ? '' : null,
+        // counterText: !widget.enabled ? '' : null,
+        errorStyle: const TextStyle(fontSize: 0),
+        counterStyle: const TextStyle(fontSize: 0),
       ),
       style: widget.style,
       onSaved: (value) {
@@ -426,16 +430,18 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
 
         widget.onChanged?.call(phoneNumber);
       },
-      validator: (value) {
-        if (value == null || !isNumeric(value)) return validatorMessage;
-        if (!widget.disableLengthCheck) {
-          return value.length >= _selectedCountry.minLength && value.length <= _selectedCountry.maxLength
-              ? null
-              : widget.invalidNumberMessage;
-        }
+      validator: widget.isValidation
+          ? (value) {
+              if (value == null || !isNumeric(value)) return validatorMessage;
+              if (!widget.disableLengthCheck) {
+                return value.length >= _selectedCountry.minLength && value.length <= _selectedCountry.maxLength
+                    ? null
+                    : widget.invalidNumberMessage;
+              }
 
-        return validatorMessage;
-      },
+              return validatorMessage;
+            }
+          : null,
       maxLength: widget.disableLengthCheck ? null : _selectedCountry.maxLength,
       keyboardType: widget.keyboardType,
       inputFormatters: widget.inputFormatters,
