@@ -424,9 +424,9 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
           number: value,
         );
 
-        if (widget.autovalidateMode != AutovalidateMode.disabled) {
-          validatorMessage = await widget.validator?.call(phoneNumber);
-        }
+        // if (widget.autovalidateMode != AutovalidateMode.disabled) {
+        //   validatorMessage = await widget.validator?.call(phoneNumber);
+        // }
 
         widget.onChanged?.call(phoneNumber);
       },
