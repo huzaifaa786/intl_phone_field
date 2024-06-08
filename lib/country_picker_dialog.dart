@@ -80,6 +80,7 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
   @override
   Widget build(BuildContext context) {
     final mediaWidth = MediaQuery.of(context).size.width;
+    final mediaHeight = MediaQuery.of(context).size.height;
     final width = widget.style?.width ?? mediaWidth;
     const defaultHorizontalPadding = 40.0;
     const defaultVerticalPadding = 24.0;
@@ -92,28 +93,29 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
       //         : defaultHorizontalPadding),
       // backgroundColor: widget.style?.backgroundColor,
       child: Container(
+        height: mediaHeight * 0.6,
         padding: widget.style?.padding ?? const EdgeInsets.all(10),
         child: Column(
           children: <Widget>[
-            Padding(
-              padding: widget.style?.searchFieldPadding ?? const EdgeInsets.all(0),
-              child: TextField(
-                cursorColor: widget.style?.searchFieldCursorColor,
-                decoration: widget.style?.searchFieldInputDecoration ??
-                    InputDecoration(
-                      suffixIcon: const Icon(Icons.search),
-                      labelText: widget.searchText,
-                    ),
-                onChanged: (value) {
-                  _filteredCountries = widget.countryList.stringSearch(value)
-                    ..sort(
-                      (a, b) => a.localizedName(widget.languageCode).compareTo(b.localizedName(widget.languageCode)),
-                    );
-                  if (mounted) setState(() {});
-                },
-              ),
-            ),
-            const SizedBox(height: 20),
+            // Padding(
+            //   padding: widget.style?.searchFieldPadding ?? const EdgeInsets.all(0),
+            //   child: TextField(
+            //     cursorColor: widget.style?.searchFieldCursorColor,
+            //     decoration: widget.style?.searchFieldInputDecoration ??
+            //         InputDecoration(
+            //           suffixIcon: const Icon(Icons.search),
+            //           labelText: widget.searchText,
+            //         ),
+            //     onChanged: (value) {
+            //       _filteredCountries = widget.countryList.stringSearch(value)
+            //         ..sort(
+            //           (a, b) => a.localizedName(widget.languageCode).compareTo(b.localizedName(widget.languageCode)),
+            //         );
+            //       if (mounted) setState(() {});
+            //     },
+            //   ),
+            // ),
+            // const SizedBox(height: 20),
             Expanded(
               child: ListView.builder(
                 shrinkWrap: true,
