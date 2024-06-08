@@ -360,25 +360,23 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
   void _showCountryPickerBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      enableDrag: true,
       isScrollControlled: true,
       builder: (BuildContext context) {
-        return Wrap(
-          children: [
-            CountryPickerDialog(
-              languageCode: widget.languageCode.toLowerCase(),
-              style: widget.pickerDialogStyle,
-              filteredCountries: filteredCountries,
-              searchText: widget.searchText,
-              countryList: _countryList,
-              selectedCountry: _selectedCountry,
-              onCountryChanged: (Country country) {
-                _selectedCountry = country;
-                widget.onCountryChanged?.call(country);
-                setState(() {});
-              },
-            ),
-          ],
+        return FractionallySizedBox(
+          heightFactor: 0.6,
+          child: CountryPickerDialog(
+            languageCode: widget.languageCode.toLowerCase(),
+            style: widget.pickerDialogStyle,
+            filteredCountries: filteredCountries,
+            searchText: widget.searchText,
+            countryList: _countryList,
+            selectedCountry: _selectedCountry,
+            onCountryChanged: (Country country) {
+              _selectedCountry = country;
+              widget.onCountryChanged?.call(country);
+              setState(() {});
+            },
+          ),
         );
       },
     );
