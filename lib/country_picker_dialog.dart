@@ -128,11 +128,14 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
                   children: <Widget>[
                     ListTile(
                       leading: kIsWeb
-                          ? Image.asset(
-                              'assets/flags/${_filteredCountries[index].code.toLowerCase()}.png',
-                              package: 'intl_phone_field',
-                              width: 32,
-                            )
+                          ? ClipRRect(
+                            borderRadius: BorderRadius.circular(16),
+                            child: Image.asset(
+                                'assets/flags/${_filteredCountries[index].code.toLowerCase()}.png',
+                                package: 'intl_phone_field',
+                                width: 32,
+                              ),
+                          )
                           : Text(
                               _filteredCountries[index].flag,
                               style: const TextStyle(fontSize: 18),

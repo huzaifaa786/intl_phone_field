@@ -361,51 +361,54 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
-        return StatefulBuilder(
-          builder: (BuildContext context, StateSetter setState) {
-            return SizedBox(
-              height: MediaQuery.of(context).size.height * 0.75,
-              child: Wrap(
-                children: [
-                  // Padding(
-                  //   padding: const EdgeInsets.all(8.0),
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //     children: [
-                  //       IconButton(
-                  //         icon: Icon(Icons.close),
-                  //         onPressed: () {
-                  //           Navigator.pop(context);
-                  //         },
-                  //       ),
-                  //       Text(
-                  //         'Select Country',
-                  //         style: TextStyle(
-                  //           fontSize: 18,
-                  //           fontWeight: FontWeight.bold,
-                  //         ),
-                  //       ),
-                  //       SizedBox(width: 48),
-                  //     ],
-                  //   ),
-                  // ),
-                  CountryPickerDialog(
-                    languageCode: widget.languageCode.toLowerCase(),
-                    style: widget.pickerDialogStyle,
-                    filteredCountries: filteredCountries,
-                    searchText: widget.searchText,
-                    countryList: _countryList,
-                    selectedCountry: _selectedCountry,
-                    onCountryChanged: (Country country) {
-                      _selectedCountry = country;
-                      widget.onCountryChanged?.call(country);
-                      setState(() {});
-                    },
-                  ),
-                ],
-              ),
-            );
-          },
+        return FittedBox(
+          fit: BoxFit.scaleDown,
+          child: StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) {
+              return SizedBox(
+                height: MediaQuery.of(context).size.height * 0.75,
+                child: Wrap(
+                  children: [
+                    // Padding(
+                    //   padding: const EdgeInsets.all(8.0),
+                    //   child: Row(
+                    //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //     children: [
+                    //       IconButton(
+                    //         icon: Icon(Icons.close),
+                    //         onPressed: () {
+                    //           Navigator.pop(context);
+                    //         },
+                    //       ),
+                    //       Text(
+                    //         'Select Country',
+                    //         style: TextStyle(
+                    //           fontSize: 18,
+                    //           fontWeight: FontWeight.bold,
+                    //         ),
+                    //       ),
+                    //       SizedBox(width: 48),
+                    //     ],
+                    //   ),
+                    // ),
+                    CountryPickerDialog(
+                      languageCode: widget.languageCode.toLowerCase(),
+                      style: widget.pickerDialogStyle,
+                      filteredCountries: filteredCountries,
+                      searchText: widget.searchText,
+                      countryList: _countryList,
+                      selectedCountry: _selectedCountry,
+                      onCountryChanged: (Country country) {
+                        _selectedCountry = country;
+                        widget.onCountryChanged?.call(country);
+                        setState(() {});
+                      },
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
         );
       },
     );
