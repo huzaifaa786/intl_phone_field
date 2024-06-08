@@ -367,28 +367,28 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
               height: MediaQuery.of(context).size.height * 0.75,
               child: Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                          icon: Icon(Icons.close),
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                        ),
-                        Text(
-                          'Select Country',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(width: 48),
-                      ],
-                    ),
-                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.all(8.0),
+                  //   child: Row(
+                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //     children: [
+                  //       IconButton(
+                  //         icon: Icon(Icons.close),
+                  //         onPressed: () {
+                  //           Navigator.pop(context);
+                  //         },
+                  //       ),
+                  //       Text(
+                  //         'Select Country',
+                  //         style: TextStyle(
+                  //           fontSize: 18,
+                  //           fontWeight: FontWeight.bold,
+                  //         ),
+                  //       ),
+                  //       SizedBox(width: 48),
+                  //     ],
+                  //   ),
+                  // ),
                   Expanded(
                     child: CountryPickerDialog(
                       languageCode: widget.languageCode.toLowerCase(),
@@ -398,9 +398,9 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                       countryList: _countryList,
                       selectedCountry: _selectedCountry,
                       onCountryChanged: (Country country) {
-                        setState(() {
-                          _selectedCountry = country;
-                        });
+                        _selectedCountry = country;
+                        widget.onCountryChanged?.call(country);
+                        setState(() {});
                       },
                     ),
                   ),
@@ -516,9 +516,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
         decoration: widget.dropdownDecoration,
         child: InkWell(
           borderRadius: widget.dropdownDecoration.borderRadius as BorderRadius?,
-          onTap: widget.enabled ? (){
-            _showCountryPickerBottomSheet(context);
-          } : null,
+          onTap: widget.enabled ? _changeCountry : null,
           child: Padding(
             padding: widget.flagsButtonPadding,
             child: Row(

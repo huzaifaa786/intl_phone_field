@@ -83,14 +83,14 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
     final width = widget.style?.width ?? mediaWidth;
     const defaultHorizontalPadding = 40.0;
     const defaultVerticalPadding = 24.0;
-    return Dialog(
-      surfaceTintColor: Colors.white,
-      insetPadding: EdgeInsets.symmetric(
-          vertical: defaultVerticalPadding,
-          horizontal: mediaWidth > (width + defaultHorizontalPadding * 2)
-              ? (mediaWidth - width) / 2
-              : defaultHorizontalPadding),
-      backgroundColor: widget.style?.backgroundColor,
+    return SizedBox(
+      // surfaceTintColor: Colors.white,
+      // insetPadding: EdgeInsets.symmetric(
+      //     vertical: defaultVerticalPadding,
+      //     horizontal: mediaWidth > (width + defaultHorizontalPadding * 2)
+      //         ? (mediaWidth - width) / 2
+      //         : defaultHorizontalPadding),
+      // backgroundColor: widget.style?.backgroundColor,
       child: Container(
         padding: widget.style?.padding ?? const EdgeInsets.all(10),
         child: Column(
