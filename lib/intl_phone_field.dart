@@ -389,18 +389,21 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                   //     ],
                   //   ),
                   // ),
-                  CountryPickerDialog(
-                    languageCode: widget.languageCode.toLowerCase(),
-                    style: widget.pickerDialogStyle,
-                    filteredCountries: filteredCountries,
-                    searchText: widget.searchText,
-                    countryList: _countryList,
-                    selectedCountry: _selectedCountry,
-                    onCountryChanged: (Country country) {
-                      _selectedCountry = country;
-                      widget.onCountryChanged?.call(country);
-                      setState(() {});
-                    },
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height,
+                    child: CountryPickerDialog(
+                      languageCode: widget.languageCode.toLowerCase(),
+                      style: widget.pickerDialogStyle,
+                      filteredCountries: filteredCountries,
+                      searchText: widget.searchText,
+                      countryList: _countryList,
+                      selectedCountry: _selectedCountry,
+                      onCountryChanged: (Country country) {
+                        _selectedCountry = country;
+                        widget.onCountryChanged?.call(country);
+                        setState(() {});
+                      },
+                    ),
                   ),
                 ],
               ),
