@@ -361,26 +361,54 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height *0.6,minHeight: MediaQuery.of(context).size.height *0.4),
-      builder: (BuildContext context) {
-        return FractionallySizedBox(
-          heightFactor: 0.6,
-          child: CountryPickerDialog(
-            languageCode: widget.languageCode.toLowerCase(),
-            style: widget.pickerDialogStyle,
-            filteredCountries: filteredCountries,
-            searchText: widget.searchText,
-            countryList: _countryList,
-            selectedCountry: _selectedCountry,
-            onCountryChanged: (Country country) {
-              _selectedCountry = country;
-              widget.onCountryChanged?.call(country);
-              setState(() {});
-            },
+      backgroundColor: Colors.transparent,
+      builder: (context) => Container(
+        height: MediaQuery.of(context).size.height * 0.75,
+        decoration: new BoxDecoration(
+          color: Colors.white,
+          borderRadius: new BorderRadius.only(
+            topLeft: const Radius.circular(25.0),
+            topRight: const Radius.circular(25.0),
           ),
-        );
-      },
+        ),
+        child: CountryPickerDialog(
+          languageCode: widget.languageCode.toLowerCase(),
+          style: widget.pickerDialogStyle,
+          filteredCountries: filteredCountries,
+          searchText: widget.searchText,
+          countryList: _countryList,
+          selectedCountry: _selectedCountry,
+          onCountryChanged: (Country country) {
+            _selectedCountry = country;
+            widget.onCountryChanged?.call(country);
+            setState(() {});
+          },
+        ),
+      ),
     );
+    // showModalBottomSheet(
+    //   context: context,
+    //   isScrollControlled: true,
+    //   constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height *0.6,minHeight: MediaQuery.of(context).size.height *0.4),
+    //   builder: (BuildContext context) {
+    //     return FractionallySizedBox(
+    //       heightFactor: 0.6,
+    //       child: CountryPickerDialog(
+    //         languageCode: widget.languageCode.toLowerCase(),
+    //         style: widget.pickerDialogStyle,
+    //         filteredCountries: filteredCountries,
+    //         searchText: widget.searchText,
+    //         countryList: _countryList,
+    //         selectedCountry: _selectedCountry,
+    //         onCountryChanged: (Country country) {
+    //           _selectedCountry = country;
+    //           widget.onCountryChanged?.call(country);
+    //           setState(() {});
+    //         },
+    //       ),
+    //     );
+    //   },
+    // );
   }
 
   Future<void> _changeCountry() async {
