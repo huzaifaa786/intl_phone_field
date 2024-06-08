@@ -79,11 +79,7 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
 
   @override
   Widget build(BuildContext context) {
-    final mediaWidth = MediaQuery.of(context).size.width;
     final mediaHeight = MediaQuery.of(context).size.height;
-    final width = widget.style?.width ?? mediaWidth;
-    const defaultHorizontalPadding = 40.0;
-    const defaultVerticalPadding = 24.0;
     return SizedBox(
       // surfaceTintColor: Colors.white,
       // insetPadding: EdgeInsets.symmetric(
@@ -99,43 +95,53 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
           borderRadius: BorderRadius.circular(8),
         ),
         padding: widget.style?.padding ?? const EdgeInsets.all(10),
-        child: ListView.builder(
-          shrinkWrap: true,
-          itemCount: _filteredCountries.length,
-          itemBuilder: (ctx, index) => Column(
-            children: <Widget>[
-              ListTile(
-                leading: kIsWeb
-                    ? ClipRRect(
-                      borderRadius: BorderRadius.circular(16),
-                      child: Image.asset(
-                          'assets/flags/${_filteredCountries[index].code.toLowerCase()}.png',
-                          package: 'intl_phone_field',
-                          width: 32,
-                        ),
-                    )
-                    : Text(
-                        _filteredCountries[index].flag,
-                        style: const TextStyle(fontSize: 18),
+        child: Wrap(
+
+          children: [
+            Text('data'),
+            SizedBox(
+              height: mediaHeight * 0.5,
+              child: ListView.builder(
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                itemCount: _filteredCountries.length,
+                itemBuilder: (ctx, index) => Column(
+                  children: <Widget>[
+                    ListTile(
+                      leading: kIsWeb
+                          ? ClipRRect(
+                            borderRadius: BorderRadius.circular(16),
+                            child: Image.asset(
+                                'assets/flags/${_filteredCountries[index].code.toLowerCase()}.png',
+                                package: 'intl_phone_field',
+                                width: 32,
+                              ),
+                          )
+                          : Text(
+                              _filteredCountries[index].flag,
+                              style: const TextStyle(fontSize: 18),
+                            ),
+                      contentPadding: widget.style?.listTilePadding,
+                      title: Text(
+                        _filteredCountries[index].localizedName(widget.languageCode),
+                        style: widget.style?.countryNameStyle ?? const TextStyle(fontWeight: FontWeight.w700),
                       ),
-                contentPadding: widget.style?.listTilePadding,
-                title: Text(
-                  _filteredCountries[index].localizedName(widget.languageCode),
-                  style: widget.style?.countryNameStyle ?? const TextStyle(fontWeight: FontWeight.w700),
+                      trailing: Text(
+                        '+${_filteredCountries[index].dialCode}',
+                        style: widget.style?.countryCodeStyle ?? const TextStyle(fontWeight: FontWeight.w700),
+                      ),
+                      onTap: () {
+                        _selectedCountry = _filteredCountries[index];
+                        widget.onCountryChanged(_selectedCountry);
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    // widget.style?.listTileDivider ?? const Divider(thickness: 1),
+                  ],
                 ),
-                trailing: Text(
-                  '+${_filteredCountries[index].dialCode}',
-                  style: widget.style?.countryCodeStyle ?? const TextStyle(fontWeight: FontWeight.w700),
-                ),
-                onTap: () {
-                  _selectedCountry = _filteredCountries[index];
-                  widget.onCountryChanged(_selectedCountry);
-                  Navigator.of(context).pop();
-                },
               ),
-              // widget.style?.listTileDivider ?? const Divider(thickness: 1),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
