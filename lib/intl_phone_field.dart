@@ -361,6 +361,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
+      constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height *0.6,minHeight: MediaQuery.of(context).size.height *0.4),
       builder: (BuildContext context) {
         return FractionallySizedBox(
           heightFactor: 0.6,
