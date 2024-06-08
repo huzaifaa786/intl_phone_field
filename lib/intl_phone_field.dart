@@ -359,19 +359,24 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
 
   Future<void> _changeCountry() async {
     filteredCountries = _countryList;
-    CountryPickerBottomSheet(
-      countryList: _countryList,
-      selectedCountry: _selectedCountry,
-      onCountryChanged: (Country country) {
-        setState(() {
-          _selectedCountry = country;
-          widget.onCountryChanged?.call(country);
-        });
-      },
-      searchText: widget.searchText,
-      languageCode: widget.languageCode.toLowerCase(),
-      style: widget.pickerDialogStyle,
-      filteredCountries: _countryList, // Pass _countryList as filteredCountries
+    await showDialog(
+      context: context,
+      useRootNavigator: false,
+      builder: (context) => StatefulBuilder(
+        builder: (ctx, setState) => CountryPickerDialog(
+          languageCode: widget.languageCode.toLowerCase(),
+          style: widget.pickerDialogStyle,
+          filteredCountries: filteredCountries,
+          searchText: widget.searchText,
+          countryList: _countryList,
+          selectedCountry: _selectedCountry,
+          onCountryChanged: (Country country) {
+            _selectedCountry = country;
+            widget.onCountryChanged?.call(country);
+            setState(() {});
+          },
+        ),
+      ),
     );
     if (mounted) setState(() {});
   }
