@@ -95,7 +95,7 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
           borderRadius: BorderRadius.circular(8),
         ),
         padding: widget.style?.padding ?? const EdgeInsets.all(10),
-        child: Column(
+        child: Wrap(
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
@@ -115,12 +115,7 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
                       fontSize: 14,
                     ),
                   ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Icon(Icons.cancel_outlined),
-                  ),
+                  Icon(Icons.cancel_outlined,color: Colors.transparent,),
                 ],
               ),
             ),
