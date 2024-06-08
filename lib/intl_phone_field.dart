@@ -362,34 +362,32 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       context: context,
       enableDrag: true,
       builder: (BuildContext context) {
-        return FittedBox(
-          fit: BoxFit.scaleDown,
-          child: SizedBox(
+        return  SizedBox(
             height: MediaQuery.of(context).size.height * 0.75,
             child: Wrap(
               children: [
-                // Padding(
-                //   padding: const EdgeInsets.all(8.0),
-                //   child: Row(
-                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //     children: [
-                //       IconButton(
-                //         icon: Icon(Icons.close),
-                //         onPressed: () {
-                //           Navigator.pop(context);
-                //         },
-                //       ),
-                //       Text(
-                //         'Select Country',
-                //         style: TextStyle(
-                //           fontSize: 18,
-                //           fontWeight: FontWeight.bold,
-                //         ),
-                //       ),
-                //       SizedBox(width: 48),
-                //     ],
-                //   ),
-                // ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(
+                        icon: Icon(Icons.close),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                      Text(
+                        'Select Country',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(width: 48),
+                    ],
+                  ),
+                ),
                 CountryPickerDialog(
                   languageCode: widget.languageCode.toLowerCase(),
                   style: widget.pickerDialogStyle,
@@ -405,8 +403,8 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                 ),
               ],
             ),
-          ),
-        );
+          );
+        
       },
     );
   }
