@@ -141,7 +141,7 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
             Expanded(
               child: ListView.builder(
                 shrinkWrap: true,
-                physics: const BouncingScrollPhysics(),
+                // physics: const BouncingScrollPhysics(),
                 itemCount: _filteredCountries.length,
                 itemBuilder: (ctx, index) => Column(
                   children: <Widget>[
