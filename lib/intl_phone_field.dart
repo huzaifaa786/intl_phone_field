@@ -364,11 +364,11 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       backgroundColor: Colors.transparent,
       builder: (context) => Container(
         height: MediaQuery.of(context).size.height * 0.75,
-        decoration: new BoxDecoration(
+        decoration: const BoxDecoration(
           color: Colors.white,
-          borderRadius: new BorderRadius.only(
-            topLeft: const Radius.circular(25.0),
-            topRight: const Radius.circular(25.0),
+          borderRadius:  BorderRadius.only(
+            topLeft:  Radius.circular(20.0),
+            topRight:  Radius.circular(20.0),
           ),
         ),
         child: CountryPickerDialog(
