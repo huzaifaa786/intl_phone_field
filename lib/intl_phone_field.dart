@@ -361,8 +361,9 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     showModalBottomSheet(
       context: context,
       enableDrag: true,
+      isScrollControlled: true,
       builder: (BuildContext context) {
-        return  Wrap(
+        return Wrap(
           children: [
             CountryPickerDialog(
               languageCode: widget.languageCode.toLowerCase(),
@@ -379,7 +380,6 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
             ),
           ],
         );
-        
       },
     );
   }

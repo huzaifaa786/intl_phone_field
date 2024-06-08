@@ -98,7 +98,7 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -106,7 +106,7 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
                     onTap: () {
                       Navigator.pop(context);
                     },
-                    child: Icon(Icons.cancel_outlined),
+                    child: const Icon(Icons.cancel_outlined),
                   ),
                   Text(
                     'Select Country Code',
