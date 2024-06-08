@@ -357,31 +357,38 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     }
   }
 
-void _showCountryPickerBottomSheet(BuildContext context) {
-  showModalBottomSheet(
-    context: context,
-    builder: (BuildContext context) {
-      return StatefulBuilder(
-        builder: (BuildContext context, StateSetter setState) {
-          return Container(
-            height: MediaQuery.of(context).size.height * 0.5, // Initial height
-            child: NotificationListener<ScrollNotification>(
-              onNotification: (ScrollNotification scrollInfo) {
-                if (scrollInfo.metrics.axis == Axis.vertical) {
-                  // Update bottom sheet height based on scroll position
-                  setState(() {
-                    if (scrollInfo.metrics.pixels > MediaQuery.of(context).size.height * 0.5) {
-                      // Expand to full height when scrolled beyond half height
-                      Navigator.pop(context);
-                      _showCountryPickerBottomSheet(context);
-                    }
-                  });
-                }
-                return true;
-              },
-              child: ListView(
-                physics: NeverScrollableScrollPhysics(),
+  void _showCountryPickerBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return StatefulBuilder(
+          builder: (BuildContext context, StateSetter setState) {
+            return SizedBox(
+              height: MediaQuery.of(context).size.height * 0.75,
+              child: Wrap(
                 children: [
+                  // Padding(
+                  //   padding: const EdgeInsets.all(8.0),
+                  //   child: Row(
+                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //     children: [
+                  //       IconButton(
+                  //         icon: Icon(Icons.close),
+                  //         onPressed: () {
+                  //           Navigator.pop(context);
+                  //         },
+                  //       ),
+                  //       Text(
+                  //         'Select Country',
+                  //         style: TextStyle(
+                  //           fontSize: 18,
+                  //           fontWeight: FontWeight.bold,
+                  //         ),
+                  //       ),
+                  //       SizedBox(width: 48),
+                  //     ],
+                  //   ),
+                  // ),
                   CountryPickerDialog(
                     languageCode: widget.languageCode.toLowerCase(),
                     style: widget.pickerDialogStyle,
@@ -397,13 +404,12 @@ void _showCountryPickerBottomSheet(BuildContext context) {
                   ),
                 ],
               ),
-            ),
-          );
-        },
-      );
-    },
-  );
-}
+            );
+          },
+        );
+      },
+    );
+  }
 
   Future<void> _changeCountry() async {
     filteredCountries = _countryList;
