@@ -138,13 +138,9 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
                 },
               ),
             ),
-            const SizedBox(height: 20),
-            Flexible(
-              child: SizedBox(
+            const SizedBox(height: 20), SizedBox(
                 height: mediaHeight * 0.6,
                 child: ListView.builder(
-                  // shrinkWrap: true,
-                  // physics: const BouncingScrollPhysics(),
                   itemCount: _filteredCountries.length,
                   itemBuilder: (ctx, index) => Column(
                     children: <Widget>[
@@ -182,7 +178,6 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
                   ),
                 ),
               ),
-            ),
           ],
         ),
       ),
