@@ -47,11 +47,13 @@ class CountryPickerDialog extends StatefulWidget {
   final List<Country> filteredCountries;
   final PickerDialogStyle? style;
   final String languageCode;
+  final String sheetTitle;
 
   const CountryPickerDialog({
     Key? key,
     required this.searchText,
     required this.languageCode,
+    required this.sheetTitle,
     required this.countryList,
     required this.onCountryChanged,
     required this.selectedCountry,
@@ -110,7 +112,7 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
                     child: const Icon(Icons.close),
                   ),
                   Text(
-                    'Select Country/Region',
+                    widget.sheetTitle,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
