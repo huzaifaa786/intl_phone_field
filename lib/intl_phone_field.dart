@@ -426,6 +426,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
           style: widget.pickerDialogStyle,
           filteredCountries: filteredCountries,
           searchText: widget.searchText,
+          sheetTitle: widget.sheetTitle ?? 'Select country/Region',
           countryList: _countryList,
           selectedCountry: _selectedCountry,
           onCountryChanged: (Country country) {
