@@ -380,7 +380,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
           filteredCountries: filteredCountries,
           searchText: widget.searchText,
           countryList: _countryList,
-          sheetTitle: widget.sheetTitle,
+          sheetTitle: widget.sheetTitle ?? 'Select country/Region',
           selectedCountry: _selectedCountry,
           onCountryChanged: (Country country) {
             _selectedCountry = country;
